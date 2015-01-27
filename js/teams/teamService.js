@@ -23,7 +23,7 @@ app.service('teamService', function($http, $q){
 		}).then(function(data){
 			var results = data.data.results;
 			var wins = 0;
-			var losses = 0
+			var losses = 0;
 			for (var i = 0; i < results.length; i++) {
 				if (results[i].won === true) {
 					wins++;
@@ -31,7 +31,11 @@ app.service('teamService', function($http, $q){
 					losses++;
 				}
 			}
+			results.wins = wins; // 
+			results.losses = losses;
+			dfd.resolve(results) // This will pass results back to the controller
 		})
+		return dfd.promise;
 	}
 
 });
