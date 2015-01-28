@@ -1,18 +1,20 @@
 var app = angular.module('nbaRoutes');
 
 app.service('teamService', function($http, $q){
-	this.addNewGame = function(gameObject) {
-		url: 'https://api.parse.com/1/classes/' + gameObject.homeTeam,
-		if (parseInt(gameObject.homeTeamScore) > parseInt(gameObject.opponentScore)) {
-			gameObject.won = true;
+	this.addNewGame = function(gameObj) {
+
+		var url = 'https://api.parse.com/1/classes/' + gameObj.homeTeam;
+		if (parseInt(gameObj.homeTeamScore) > parseInt(gameObj.opponentScore)) {
+			gameObj.won = true;
 		} else {
-			gameObject.won = false;
+			gameObj.won = false;
 		}
 		return $http ({
 			method: 'POST',
 			url: url,
-			data: gameObject
+			data: gameObj
 		})
+
 	}
 
 	this.getTeamData = function(team) {
@@ -33,9 +35,14 @@ app.service('teamService', function($http, $q){
 			}
 			results.wins = wins; // 
 			results.losses = losses;
+			// console.log(results)
 			dfd.resolve(results) // This will pass results back to the controller
 		})
 		return dfd.promise;
 	}
 
 });
+
+
+
+
