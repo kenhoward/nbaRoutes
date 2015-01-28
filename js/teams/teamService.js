@@ -2,16 +2,16 @@ var app = angular.module('nbaRoutes');
 
 app.service('teamService', function($http, $q){
 	this.addNewGame = function(gameObject) {
-		url: 'https://api.parse.com/1/classes/' + gameObj.homeTeam,
-		if (parseInt(gameObj.homeTeamScore) > parseInt(gameObj.opponentScore)) {
-			gameObj.won = true;
+		url: 'https://api.parse.com/1/classes/' + gameObject.homeTeam,
+		if (parseInt(gameObject.homeTeamScore) > parseInt(gameObject.opponentScore)) {
+			gameObject.won = true;
 		} else {
-			gameObj.won = false;
+			gameObject.won = false;
 		}
 		return $http ({
 			method: 'POST',
 			url: url,
-			data: gameObj
+			data: gameObject
 		})
 	}
 
